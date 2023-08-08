@@ -1,0 +1,50 @@
+.cafe.input label {
+  display: block;
+  width: 70%;
+  margin: 0 auto;
+  text-align: left;
+  font-family: "KCC-Ganpan";
+  color: #574017;
+  font-size: 25px;
+  margin-top: 2rem;
+}
+
+.cafe.input input {
+  width: 70%;
+  background-color: rgba(87, 64, 23, 0.2);
+  outline: none;
+  border: none;
+  height: 5vh;
+  border-radius: 10px;
+  padding-left: 10px;
+  font-size: 13px;
+}
+.cafe.input input:focus {
+  background-color: rgb(235, 235, 235);
+}
+.cafe.input input:focus::placeholder {
+  color: transparent;
+}
+.cafe.input input::placeholder {
+  text-align: center;
+  font-size: 15px;
+  font-family: "KCC-Ganpan";
+}
+
+.button {
+  margin-top: 2rem;
+}
+
+.button button {
+  background-color: #574017;
+  color: white;
+  width: 20%;
+  height: 5vh;
+  outline: none;
+  border: none;
+  font-family: "KCC-Ganpan";
+  font-size: 20px;
+}
+.button button:hover {
+  cursor: pointer;
+}
