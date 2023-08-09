@@ -1,6 +1,6 @@
 .cafe.input label {
   display: block;
-  width: 70%;
+  width: 50%;
   margin: 0 auto;
   text-align: left;
   font-family: "KCC-Ganpan";
@@ -9,15 +9,28 @@
   margin-top: 2rem;
 }
 
-.cafe.input input {
-  width: 70%;
+.cafe.input input,
+.cafe.input select {
+  width: 50%;
   background-color: rgba(87, 64, 23, 0.2);
   outline: none;
   border: none;
   height: 5vh;
   border-radius: 10px;
   padding-left: 10px;
-  font-size: 13px;
+  font-size: 16px;
+  font-family: "TheJamsil5Bold";
+}
+.cafe.input select {
+  text-align: center;
+  font-family: "KCC-Ganpan";
+  font-size: 15px;
+}
+.cafe.input select:hover {
+  cursor: pointer;
+}
+.cafe.input option {
+  font-size: 15px;
 }
 .cafe.input input:focus {
   background-color: rgb(235, 235, 235);
@@ -47,4 +60,8 @@
 }
 .button button:hover {
   cursor: pointer;
+}
+
+div [key="{0}"] {
+  background-color: black;
 }
