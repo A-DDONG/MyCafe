@@ -1,0 +1,50 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  width: 600px;
+  height: auto;
+  max-height: 600px;
+  max-width: 80%;
+  overflow: auto;
+}
+
+.modal_content,
+.modal_content p {
+  font-size: 30px !important;
+  font-family: "TheJamsil5Bold" !important;
+  margin-top: 20px;
+}
+.modal_content p {
+  color: #574017;
+  margin-bottom: 10px;
+}
+.modal-content button {
+  background-color: #574017;
+  color: white;
+  width: 20%;
+  height: 5vh;
+  outline: none;
+  border: none;
+  font-family: "KCC-Ganpan";
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 20px;
+}

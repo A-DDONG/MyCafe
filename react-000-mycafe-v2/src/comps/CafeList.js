@@ -2,10 +2,17 @@ import CafeItem from "./CafeItem";
 import { useCafe } from "./CafeMain";
 
 const CafeList = () => {
-  const { cafeList } = useCafe();
+  const { cafeList, itemDelete, updateItemSelect } = useCafe();
   console.log("cafeList in CafeList:", cafeList);
   const cafeItemList = cafeList.map((cafe) => {
-    return <CafeItem item={cafe} key={cafe.id} />;
+    return (
+      <CafeItem
+        item={cafe}
+        key={cafe.id}
+        itemDelete={itemDelete}
+        updateItemSelect={updateItemSelect}
+      />
+    );
   });
   return (
     <>

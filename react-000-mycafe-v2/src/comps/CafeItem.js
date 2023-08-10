@@ -1,13 +1,80 @@
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import Modal from "./Modal";
+
 const CafeItem = (props) => {
-  const { item } = props;
+  const navigate = useNavigate();
+  const [showMemo, setShowMemo] = useState(false);
+
+  const { item, itemDelete, updateItemSelect } = props;
+  const deleteClickHandler = (e, id) => {
+    itemDelete(id);
+    window.alert("삭제가 완료되었습니다.");
+  };
+  const contentClickHandler = (e, id) => {
+    updateItemSelect(id);
+    navigate(`/recipe/update/${id}`);
+  };
+  const memoClickHandler = (e) => {
+    setShowMemo(true);
+  };
   console.log("Item in CafeItem:", item);
   return (
     <div className="item">
-      <p>작성자: {item.c_nickname}</p>
-      <p>메뉴 구분: {item.c_division}</p>
-      <p>메뉴 이름: {item.c_name}</p>
-      <p>레시피: {item.c_recipe}</p>
-      <p>조리 방법: {item.c_making}</p>
+      <p>
+        <span>&bull; 작성자: </span>
+        <span> {item.c_nickname}</span>
+      </p>
+      <div className="item_button">
+        <button
+          className="delete"
+          onClick={(e) => deleteClickHandler(e, item.id)}
+        >
+          삭제
+        </button>
+        <button
+          className="update"
+          onClick={(e) => contentClickHandler(e, item.id)}
+        >
+          수정
+        </button>
+        {item.c_memo && (
+          <button className="memo" onClick={memoClickHandler}>
+            메모
+          </button>
+        )}
+      </div>
+      <Modal show={showMemo} onClose={() => setShowMemo(false)}>
+        <h3>메모있음!</h3>
+        <div className="modal_content">
+          <p>&bull; 작성자</p> {item.c_nickname}
+        </div>
+        <div className="modal_content">
+          <p>&bull; 메뉴 이름</p> {item.c_name}
+        </div>
+        <div className="modal_content">
+          <p>&bull; 메모</p> {item.c_memo}
+        </div>
+      </Modal>
+      <p>
+        <span>&bull; 메뉴 구분:</span>
+        <span> {item.c_division}</span>
+      </p>
+      <p>
+        <span>&bull; 메뉴 이름:</span>
+        <span> {item.c_name}</span>
+      </p>
+      <p>
+        <span>&bull; 레시피:</span>
+        <span> {item.c_recipe}</span>
+      </p>
+      <p>
+        <span>&bull; 조리 방법</span>
+      </p>
+      <ol>
+        {Array.isArray(item.c_making) &&
+          item.c_making.map((step, index) => <li key={index}>{step}</li>)}
+      </ol>
     </div>
   );
 };

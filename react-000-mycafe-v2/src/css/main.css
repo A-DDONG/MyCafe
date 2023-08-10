@@ -17,7 +17,7 @@ header {
   /* margin-top: 2rem; */
 }
 .head {
-  width: 50%;
+  width: 40%;
   margin: 0 auto;
   border: 3px solid #574017;
   border-bottom: none;
@@ -28,12 +28,14 @@ header {
   color: #574017;
   font-family: "KCC-Ganpan";
   position: relative;
+  margin-top: 1rem;
 }
 
 .head h1 {
   width: 450px;
   text-align: center;
   margin: 0 auto;
+  margin-top: 2rem;
   font-size: 50px;
   background-image: linear-gradient(
     120deg,
@@ -53,6 +55,7 @@ header {
   justify-content: center;
   margin-top: 20px;
   font-size: 20px;
+  padding: 30px;
 }
 .nav li {
   padding: 5px;
@@ -78,7 +81,7 @@ header {
   position: absolute;
   top: -3px;
   left: -3px;
-  border-width: 0px 0px 50px 50px;
+  border-width: 0px 0px 100px 100px;
   border-style: solid;
   border-bottom-right-radius: 10px;
   border-color: transparent transparent #574017 transparent;
@@ -87,7 +90,7 @@ header {
   height: 0;
 }
 .container {
-  width: 50%;
+  width: 40%;
   margin: 0 auto;
   background-color: rgba(87, 64, 23, 0.2);
   height: 100%;
@@ -103,6 +106,7 @@ header {
   text-decoration-line: underline;
   text-decoration-style: double;
 }
+
 @font-face {
   font-family: "KCC-Ganpan";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/KCC-Ganpan.woff2")

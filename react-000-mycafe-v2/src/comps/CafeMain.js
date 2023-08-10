@@ -1,11 +1,9 @@
-import CafeInput from "./CafeInput";
 import { useState, useEffect } from "react";
 import { createContext, useContext } from "react";
 import "../css/input.css";
 import "../css/list.css";
 import { initData } from "../data/initData";
 import uuid from "react-uuid";
-import CafeList from "./CafeList";
 import { Outlet } from "react-router-dom";
 
 export const CafeContext = createContext();
@@ -49,43 +47,95 @@ const CafeMain = () => {
     console.log("New Cafe:", newCafe);
     setCafeList([...cafeList, newCafe]);
   };
+  const updateItemSelect = (id) => {
+    const selectCafeList = cafeList.filter((item) => {
+      return item.id === id;
+    });
+    setCafe({ ...selectCafeList[0] });
+  };
   const cafeInput = ({
     c_nickname,
     c_division,
     c_name,
     c_recipe,
     c_making,
+    c_memo,
   }) => {
-    if (!cafe.id) {
-      cafeListAdd({
-        c_nickname,
-        c_division,
-        c_name,
-        c_recipe,
-        c_making,
-      });
-    } else {
-      const updateCafeList = cafeList.map((item) => {
-        if (item.id === cafe.id) {
-          return {
-            ...item,
-            c_nickname: c_nickname,
-            c_division: c_division,
-            c_name: c_name,
-            c_recipe: c_recipe,
-            c_making: c_making,
-          };
-        }
-        return item;
-      });
-      setCafeList(updateCafeList);
+    if (!inputConfirm({ c_nickname, c_division, c_name, c_recipe, c_making })) {
+      window.alert("모든 항목을 입력해주세요!");
+      return;
     }
-    console.log("cafeList in CafeMain:", cafeList);
+    let confirmMessage = cafe.id
+      ? "레시피를 수정할까요?"
+      : "레시피를 추가할까요?";
+    let successMessage = cafe.id
+      ? "레시피 수정이 완료되었습니다."
+      : "레시피 등록이 완료되었습니다.";
+    if (window.confirm(confirmMessage)) {
+      if (!cafe.id) {
+        cafeListAdd({
+          c_nickname,
+          c_division,
+          c_name,
+          c_recipe,
+          c_making,
+          ...(c_memo ? { c_memo } : {}), // c_memo 값이 있을 때만 추가
+        });
+      } else {
+        const updateCafeList = cafeList.map((item) => {
+          if (item.id === cafe.id) {
+            return {
+              ...item,
+              c_nickname: c_nickname,
+              c_division: c_division,
+              c_name: c_name,
+              c_recipe: c_recipe,
+              c_making: c_making,
+              ...(c_memo ? { c_memo } : {}), // c_memo 값이 있을 때만 추가
+            };
+          }
+          return item;
+        });
+        setCafeList(updateCafeList);
+      }
+      // 저장 후, cafe의 상태를 초기화하여 인풋 박스의 값을 초기화
+      setCafe(initData());
+
+      window.alert(successMessage);
+      return true;
+    }
+    return false;
+  };
+  const itemDelete = (id) => {
+    if (window.confirm("해당 레시피를 삭제할까요?")) {
+      const deleteCafeList = cafeList.filter((item) => {
+        return item.id !== id;
+      });
+      setCafeList([...deleteCafeList]);
+    }
+  };
+  const inputConfirm = ({
+    c_nickname,
+    c_division,
+    c_name,
+    c_recipe,
+    c_making,
+  }) => {
+    // 각 항목이 비어있는지 확인
+    return c_nickname && c_division && c_name && c_recipe && c_making;
   };
 
   return (
     <CafeContext.Provider
-      value={{ cafe, setCafe, cafeList, setCafeList, cafeInput }}
+      value={{
+        cafe,
+        setCafe,
+        cafeList,
+        setCafeList,
+        cafeInput,
+        itemDelete,
+        updateItemSelect,
+      }}
     >
       {/* <CafeInput
         cafe={cafe}

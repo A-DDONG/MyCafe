@@ -1,42 +1,41 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { useCafe } from "./CafeMain";
 import { useNavigate } from "react-router-dom";
 
-const CafeInput = () => {
+const CafeUpdate = () => {
   const navigate = useNavigate();
-  const { cafe, setCafe, cafeInput } = useCafe();
-  // const [cafe, setCafe] = useState();
-  // const [cafe, setCafe, cafeInput] = props;
-  // const [recipeCount, setRecipeCount] = useState(1);
+  const { id } = useParams();
+  const { cafeList, cafeInput } = useCafe();
+  const selectedItem = cafeList.find((item) => item.id === id);
+
+  const [updatedCafe, setUpdatedCafe] = useState({
+    c_nickname: "",
+    c_division: "",
+    c_name: "",
+    c_recipe: "",
+    c_making: "",
+    c_memo: "", // 새로 추가된 메모 필드
+  });
 
   useEffect(() => {
-    // 상태 초기화
-    setCafe({
-      c_nickname: "",
-      c_division: "",
-      c_name: "",
-      c_recipe: "",
-      c_making: "",
-    });
-  }, []);
-
+    if (selectedItem) {
+      setUpdatedCafe(selectedItem);
+    }
+  }, [selectedItem]);
   const inputChangeHandler = (e) => {
     const { name, value } = e.target;
-    setCafe({ ...cafe, [name]: value });
+    setUpdatedCafe({ ...updatedCafe, [name]: value });
   };
-
-  // const addRecipeHandler = () => {
-  //   setRecipeCount(recipeCount + 1);
-  // };
   const btnClickHandler = (e) => {
-    e.preventDefault(); // 폼 제출을 방지하려면 이 코드를 추가해야 합니다.
-    const makingSteps = cafe.c_making.split("\n");
+    e.preventDefault();
     let result = cafeInput({
-      c_nickname: cafe.c_nickname,
-      c_division: cafe.c_division,
-      c_name: cafe.c_name,
-      c_recipe: cafe.c_recipe,
-      c_making: makingSteps,
+      c_nickname: updatedCafe.c_nickname,
+      c_division: updatedCafe.c_division,
+      c_name: updatedCafe.c_name,
+      c_recipe: updatedCafe.c_recipe,
+      c_making: updatedCafe.c_making,
+      c_memo: updatedCafe.c_memo,
     });
     if (result) {
       navigate(`/recipe/list`);
@@ -45,7 +44,7 @@ const CafeInput = () => {
 
   return (
     <>
-      <h1>레시피 만들기</h1>
+      <h1>&bull; 레시피 수정하기</h1>
       <section className="main">
         <div className="cafe input">
           <label>&bull; 작성자</label>
@@ -53,23 +52,16 @@ const CafeInput = () => {
             name="c_nickname"
             placeholder="작성자"
             onChange={inputChangeHandler}
-            value={cafe.c_nickname}
+            value={updatedCafe.c_nickname}
+            disabled
           />
         </div>
-        {/* <div className="cafe input">
-          <label>메뉴구분</label>
-          <input
-            name="c_division"
-            placeholder="메뉴구분"
-            onChange={inputChangeHandler}
-          />
-        </div> */}
         <div className="cafe input">
           <label>&bull; 메뉴구분</label>
           <select
             name="c_division"
             onChange={inputChangeHandler}
-            value={cafe.c_division || ""}
+            value={updatedCafe.c_division || ""}
           >
             <option value="">선택</option>
             <option value="커피">커피</option>
@@ -77,7 +69,6 @@ const CafeInput = () => {
             <option value="차">차</option>
             <option value="논커피">논커피</option>
             <option value="기타">기타</option>
-            {/* 여기에 추가적인 옵션을 추가하실 수 있습니다 */}
           </select>
         </div>
         <div className="cafe input">
@@ -86,7 +77,7 @@ const CafeInput = () => {
             name="c_name"
             placeholder="메뉴이름"
             onChange={inputChangeHandler}
-            value={cafe.c_name}
+            value={updatedCafe.c_name}
           />
         </div>
         <div className="cafe input">
@@ -95,19 +86,26 @@ const CafeInput = () => {
             name="c_recipe"
             placeholder="레시피"
             onChange={inputChangeHandler}
-            value={cafe.c_recipe}
+            value={updatedCafe.c_recipe}
           />
         </div>
         <div className="cafe input">
           <label>&bull; 조리방법</label>
           <textarea
             name="c_making"
-            placeholder="작성예시                                                                       
-            1. 얼음 넣기 
-            2. 물 붓기"
+            placeholder="조리방법"
             onChange={inputChangeHandler}
-            value={cafe.c_making}
+            value={updatedCafe.c_making}
           />
+        </div>
+        <div className="cafe input">
+          <label>&#9998; 메모</label>
+          <textarea
+            name="c_memo"
+            placeholder="메모"
+            onChange={inputChangeHandler}
+            value={updatedCafe.c_memo || ""}
+          ></textarea>
         </div>
         <div className="button">
           <button onClick={btnClickHandler}>저장</button>
@@ -116,4 +114,5 @@ const CafeInput = () => {
     </>
   );
 };
-export default CafeInput;
+
+export default CafeUpdate;

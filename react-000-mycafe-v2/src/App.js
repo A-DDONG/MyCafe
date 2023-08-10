@@ -1,5 +1,3 @@
-import CafeMain from "./comps/CafeMain";
-import CafeNav from "./comps/CafeNav";
 import "./css/App.css";
 import "./css/main.css";
 import NavList from "./layout/NavList";
