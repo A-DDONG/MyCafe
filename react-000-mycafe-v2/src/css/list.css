@@ -1,0 +1,12 @@
+.item {
+  margin-top: 2rem;
+  display: block;
+  /* width: 50%; */
+  border: 2px solid #574017;
+  text-align: left;
+}
+.item p {
+  font-family: "KCC-Ganpan";
+  font-size: 20px;
+  color: #574017;
+}

@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { initData } from "../data/initData";
+import { useCafe } from "./CafeMain";
 
 const CafeInput = () => {
+  const { cafe, setCafe, cafeList, setCafeList, cafeInput } = useCafe();
   // const [cafe, setCafe] = useState();
-  const [cafe, setCafe] = useState({});
+  // const [cafe, setCafe, cafeInput] = props;
   // const [recipeCount, setRecipeCount] = useState(1);
 
   const inputChangeHandler = (e) => {
@@ -13,9 +16,20 @@ const CafeInput = () => {
   // const addRecipeHandler = () => {
   //   setRecipeCount(recipeCount + 1);
   // };
+  const btnClickHandler = (e) => {
+    e.preventDefault(); // 폼 제출을 방지하려면 이 코드를 추가해야 합니다.
+    cafeInput({
+      c_nickname: cafe.c_nickname,
+      c_division: cafe.c_division,
+      c_name: cafe.c_name,
+      c_recipe: cafe.c_recipe,
+      c_making: cafe.c_making,
+    });
+  };
 
   return (
     <>
+      <h1>레시피 만들기</h1>
       <section className="main">
         <div className="cafe input">
           <label>작성자</label>
@@ -90,7 +104,7 @@ const CafeInput = () => {
           />
         </div>
         <div className="button">
-          <button>저장</button>
+          <button onClick={btnClickHandler}>저장</button>
         </div>
       </section>
     </>
