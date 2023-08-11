@@ -119,3 +119,40 @@
   top: 24px;
   left: 115px;
 }
+
+.menu_button {
+  background-color: #574017;
+  color: white;
+  width: 20%;
+  height: 5vh;
+  outline: none;
+  border: none;
+  font-family: "KCC-Ganpan";
+  font-size: 20px;
+  cursor: pointer;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.teacher {
+  opacity: 0;
+  transition: opacity 5s ease-out;
+  visibility: hidden; /* 처음에는 보이지 않게 설정 */
+}
+
+.teacher.visible {
+  opacity: 1;
+  visibility: visible;
+}
+.teacher p {
+  font-family: "KCC-Ganpan";
+  font-size: 40px;
+  color: #574017;
+}
+.thanks {
+  font-size: 50px;
+  font-family: "TheJamsil5Bold";
+  color: #574017;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}

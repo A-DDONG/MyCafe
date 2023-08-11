@@ -106,12 +106,13 @@ const CafeMain = () => {
     }
     return false;
   };
-  const itemDelete = (id) => {
-    if (window.confirm("해당 레시피를 삭제할까요?")) {
+  const itemDelete = (id, c_name) => {
+    if (window.confirm(`${c_name} 레시피를 삭제할까요?`)) {
       const deleteCafeList = cafeList.filter((item) => {
         return item.id !== id;
       });
       setCafeList([...deleteCafeList]);
+      window.alert("삭제가 완료되었습니다.");
     }
   };
   const inputConfirm = ({

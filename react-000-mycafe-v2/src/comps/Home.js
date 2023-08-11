@@ -15,6 +15,11 @@ const Home = () => {
     damples: false,
     bus: false,
   });
+  const [orderComplete, setOrderComplete] = useState(false);
+
+  const handleOrder = () => {
+    setOrderComplete(true);
+  };
 
   return (
     <div>
@@ -196,9 +201,17 @@ const Home = () => {
       )}
 
       <div className="line"></div>
-
       <div>
-        <p>Jang Hyunjung</p>
+        {orderComplete ? (
+          <p className="thanks">감사합니다.</p>
+        ) : (
+          <button className="menu_button" onClick={handleOrder}>
+            주문하기
+          </button>
+        )}
+        <div className={`teacher ${orderComplete ? "visible" : ""}`}>
+          <p>Jang Hyunjung</p>
+        </div>
       </div>
     </div>
   );
