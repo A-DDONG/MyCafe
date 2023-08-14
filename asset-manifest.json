@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/MyCafe/static/css/main.cd2f600b.css",
+    "main.js": "/MyCafe/static/js/main.fea753f8.js",
+    "static/media/밑줄3.png": "/MyCafe/static/media/밑줄3.fa0ed4d8aa213b55d71f.png",
+    "static/media/밑줄1.png": "/MyCafe/static/media/밑줄1.c3cfe90d6fea0277cac9.png",
+    "static/media/밑줄4.png": "/MyCafe/static/media/밑줄4.258179b53b53d08b15b5.png",
+    "static/media/메모밑줄.png": "/MyCafe/static/media/메모밑줄.d77c7faa2fec1eeab8bc.png",
+    "static/media/밑줄2.png": "/MyCafe/static/media/밑줄2.07b1e19ff6b6d21313a0.png",
+    "index.html": "/MyCafe/index.html",
+    "main.cd2f600b.css.map": "/MyCafe/static/css/main.cd2f600b.css.map",
+    "main.fea753f8.js.map": "/MyCafe/static/js/main.fea753f8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cd2f600b.css",
+    "static/js/main.fea753f8.js"
+  ]
+}
